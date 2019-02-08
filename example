@@ -1,0 +1,56 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+
+<script type="text/javascript" language="JavaScript">
+<!--
+function validateForm() {
+    // return true;
+    var c = document.querySelector('crowd-form');
+    var nodeList = c.querySelectorAll('crowd-checkbox');
+    var nodeArray = [];
+    for (var i = 0; i < nodeList.length; ++i) {
+        nodeArray[i] = nodeList[i];
+    }
+    if(nodeArray[0].checked && !nodeArray[1].checked && !nodeArray[2].checked){
+    return true;        
+    }
+    else{
+     alert("Please read the instruction carefully to submit the answer")   
+     return false;
+    }
+}
+//-->
+</script> 
+
+<crowd-form answer-format="flatten-objects">
+
+
+  <div>
+    <p>Check the correct answers before going to the generation stage</p>
+    <p><crowd-checkbox name="check"> Yes</crowd-checkbox></p>
+    <p><crowd-checkbox name="check1"> No</crowd-checkbox></p>
+    <p><crowd-checkbox name="check2"> No</crowd-checkbox></p>
+  </div>
+  
+  <div>
+    <p>Q1</p>
+    <crowd-input name="q1" placeholder="" required></crowd-input>
+  </div>
+ 
+  <div>
+    <p>Q2</p>
+    <crowd-text-area name="q2" rows="1" placeholder="" required></crowd-text-area>
+  </div>
+</crowd-form>
+  <<script type="text/javascript">
+document.querySelector('crowd-form').onsubmit = function(e ) {
+    if (!validateForm()) {
+        e.preventDefault();
+    }
+}
+</script> 
